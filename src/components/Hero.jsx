@@ -1,121 +1,120 @@
 import {
-  FiArrowDown,
-  FiDownload,
-  FiInstagram,
+  FiArrowRight,
   FiMail,
-  FiPhone,
+  FiInstagram,
+  FiExternalLink,
 } from 'react-icons/fi'
-import { FaGithub, FaWhatsapp } from 'react-icons/fa'
-import {
-  SiReact,
-  SiLaravel,
-  SiFigma,
-  SiBootstrap,
-  SiJavascript,
-} from 'react-icons/si'
-import heroImg from '../assets/hero.png'
-import useTypewriter from '../hooks/useTypewriter'
+import { FaWhatsapp } from 'react-icons/fa'
+import KokardeLanyard from './KokardeLanyard'
 
-const ROLES = [
-  'Frontend Developer',
-  'UI/UX Designer',
-  'Web Developer',
-  'Freelancer',
+const SOCIALS = [
+  { href: 'mailto:vinesfernandosiritoitet@gmail.com', label: 'Email', Icon: FiMail },
+  { href: 'https://wa.me/6285187169158?text=Halo%20Vines%2C%20saya%20tertarik%20bekerjasama%20untuk%20proyek%20UI%2FUX!', label: 'WhatsApp', Icon: FaWhatsapp },
+  { href: 'https://instagram.com/saip.ul3446', label: 'Instagram', Icon: FiInstagram },
 ]
 
-const FLOATERS = [
-  { Icon: SiReact, color: '#61dafb', top: '2%', left: '-6%' },
-  { Icon: SiLaravel, color: '#ff2d20', top: '18%', right: '-9%' },
-  { Icon: SiFigma, color: '#a259ff', bottom: '10%', left: '-8%' },
-  { Icon: SiBootstrap, color: '#7952b3', bottom: '2%', right: '-4%' },
-  { Icon: SiJavascript, color: '#f7df1e', top: '-4%', right: '16%' },
+const STATS = [
+  { num: '4', label: 'Keahlian Inti' },
+  { num: '100%', label: 'Fokus Pengguna' },
 ]
 
 export default function Hero() {
-  const typed = useTypewriter(ROLES)
+  const scrollTo = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
-    <section
-      id="home"
-      className="relative flex min-h-svh items-center overflow-hidden pb-24 pt-[96px]"
-    >
-      <div className="container grid items-center gap-12 text-center lg:grid-cols-[1fr_1.1fr] lg:text-left">
-        <div className="relative isolate grid place-items-center">
-          <div className="relative aspect-[1/1.05] w-[min(320px,70vw)] rounded-full bg-gradient-to-br from-blue-light to-purple-light p-2 shadow-[0_0_80px_rgba(129,140,248,0.3)]">
-            <div className="absolute -inset-[30%] -z-10 rounded-full bg-[radial-gradient(circle,rgba(129,140,248,0.25),rgba(168,85,247,0.15)_45%,transparent_70%)] blur-[20px]" />
-            <img
-              src={heroImg}
-              alt="Vines Fernando"
-              className="h-full w-full rounded-full bg-bg-soft object-cover"
-            />
-          </div>
+    <section id="home" className="relative overflow-x-clip bg-bg pt-24 pb-0 lg:pt-18 lg:pb-0 min-h-screen flex flex-col justify-between">
+      {/* Background Foto Hitam & Putih (Tampak Jelas, Lebar & Penuh Hingga Dasar Layar) */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <img
+          src="/vines-photo.jpg"
+          alt="Background Vines Fernando S"
+          className="h-full w-full object-cover object-[70%_25%] opacity-85 sm:opacity-90 dark:opacity-65 filter grayscale contrast-140 brightness-120 scale-110 transition-all duration-700"
+        />
+        {/* Gradiasi halus: menjaga teks sebelah kiri tetap terbaca sempurna */}
+        <div className="absolute inset-0 bg-linear-to-r from-bg/95 via-bg/35 via-45% to-transparent" />
+      </div>
 
-          {FLOATERS.map(({ Icon, color, top, left, right, bottom }) => (
-            <div
-              key={color}
-              className="absolute z-[3]"
-              style={{ top, left, right, bottom, color }}
-            >
-              <span className="grid h-[54px] w-[54px] place-items-center rounded-2xl border border-line bg-[rgba(16,21,43,0.9)] text-[1.5rem] shadow-[0_10px_30px_rgba(0,0,0,0.45)] max-md:h-11 max-md:w-11 max-md:text-[1.2rem]">
-                <Icon />
-              </span>
-            </div>
-          ))}
-        </div>
+      {/* Background ambient lighting */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 grid-lines opacity-30" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -left-24 top-28 h-90 w-90 rounded-full blur-3xl animate-float-slow"
+          style={{ background: 'radial-gradient(circle,rgba(37,99,235,0.14),transparent 70%)' }}
+      />
 
-        <div className="text-center lg:text-left">
-          <span className="mb-4 inline-flex items-center gap-2.5 font-semibold text-mute">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#22c55e]" />
-            Hai, saya
-          </span>
-
-          <h1 className="mb-3.5 font-heading text-[clamp(2.6rem,6vw,4.4rem)] text-heading">
-            Vines <span className="gradient-text">Fernando</span>
-          </h1>
-
-          <div className="mb-5 flex min-h-[2.2em] items-center gap-3 font-heading text-[clamp(1.2rem,2.5vw,1.6rem)] font-semibold text-heading">
-            <span className="text-purple-light">&gt;</span>
-            <span className="gradient-text">{typed}</span>
-            <span className="inline-block h-[1.2em] w-[3px] animate-caret rounded-[2px] bg-blue-light" />
-          </div>
-
-          <p className="mx-auto mb-8 max-w-[520px] text-[1.05rem] text-mute lg:mr-auto lg:ml-0">
-            Saya membangun pengalaman web modern yang cepat, indah, dan
-            responsif — dari desain UI hingga kode yang rapi.
+      <div className="container relative my-auto grid items-start gap-12 lg:grid-cols-[1.1fr_1fr] xl:gap-14 pb-12 lg:pb-16">
+        {/* Left Column: Text & Hero CTA */}
+        <div className="z-10 lg:pt-14">
+          {/* Sapaan: Halo, saya */}
+          <p className="anim-enter font-heading text-[1.05rem] font-medium tracking-wide text-mute">
+            Halo, saya
           </p>
 
-          <div className="mb-8 flex flex-wrap justify-center gap-3.5 lg:justify-start">
-            <a href="/cv.pdf" download className="glow-btn">
-              <FiDownload /> Download CV
-            </a>
-            <a href="#contact" className="glow-btn ghost">
-              <FiPhone /> Hubungi Saya
+          {/* Nama: Vines Fernando S */}
+          <h1 className="anim-enter anim-delay-1 mt-1 font-heading text-[clamp(2.75rem,5.5vw,4.5rem)] font-extrabold tracking-tight text-heading leading-[1.08]">
+            Vines{' '}
+            <span className="animate-gradient-text bg-linear-to-r from-indigo via-indigo-light to-indigo-dark bg-clip-text text-transparent">
+              Fernando S
+            </span>
+          </h1>
+
+          {/* Profesi: UI/UX DESIGNER */}
+          <div className="anim-enter anim-delay-2 mt-2 inline-block">
+            <span className="font-heading text-[clamp(1rem,2vw,1.25rem)] font-bold uppercase tracking-[0.2em] text-indigo">
+              UI/UX DESIGNER
+            </span>
+          </div>
+
+          {/* Tagline */}
+          <h2 className="anim-enter anim-delay-3 mt-4 font-heading text-[clamp(1.35rem,2.5vw,1.95rem)] font-bold leading-[1.3] text-heading">
+            Saya percaya desain yang hebat adalah desain yang{' '}
+            <span className="text-indigo">
+              mempermudah hidup
+            </span>{' '}
+            orang lain.
+          </h2>
+
+          {/* Deskripsi kemampuan desain UI/UX */}
+          <p className="anim-enter anim-delay-4 mt-5 max-w-135 text-[0.98rem] leading-relaxed text-mute">
+            Mari kita wujudkan ide bisnis Anda menjadi pengalaman digital yang sederhana, menarik, dan bermakna. Saya siap berkolaborasi menciptakan antarmuka web &amp; mobile yang membuat pengguna betah dan bisnis Anda melesat.
+          </p>
+
+          {/* Buttons: Lihat Project, Hubungi Saya & Buka CV */}
+          <div className="anim-enter anim-delay-5 mt-8 flex flex-wrap items-center gap-4">
+            <button
+              type="button"
+              className="btn btn-primary group shadow-button"
+              onClick={() => scrollTo('projects')}
+            >
+              Lihat Project{' '}
+              <FiArrowRight className="transition-transform duration-200 group-hover:translate-x-1.5" />
+            </button>
+            <button
+              type="button"
+              className="btn btn-outline"
+              onClick={() => scrollTo('contact')}
+            >
+              Hubungi Saya
+            </button>
+            <a
+              href="/cv.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="btn btn-outline"
+              title="Buka CV Vines Fernando"
+            >
+              <FiExternalLink /> Buka CV
             </a>
           </div>
 
-          <div className="flex justify-center gap-3 lg:justify-start">
-            {[
-              {
-                href: 'mailto:vinesfernandosiritoitet@gmail.com',
-                label: 'Email',
-                Icon: FiMail,
-              },
-              {
-                href: 'https://wa.me/6285187169158',
-                label: 'WhatsApp',
-                Icon: FaWhatsapp,
-              },
-              {
-                href: 'https://instagram.com/saip.ul3446',
-                label: 'Instagram',
-                Icon: FiInstagram,
-              },
-              {
-                href: 'https://github.com',
-                label: 'GitHub',
-                Icon: FaGithub,
-              },
-            ].map(({ href, label, Icon: IconCmp }) => (
+          {/* Social Icons */}
+          <div className="anim-enter anim-delay-5 mt-8 flex items-center gap-3">
+            <span className="text-[0.78rem] font-bold uppercase tracking-wider text-mute mr-1">
+              Terhubung:
+            </span>
+            {SOCIALS.map(({ href, label, Icon }) => (
               <a
                 key={label}
                 href={href}
@@ -123,22 +122,29 @@ export default function Hero() {
                 rel="noreferrer"
                 aria-label={label}
                 title={label}
-                className="grid h-[46px] w-[46px] place-items-center rounded-[14px] border border-line bg-surface text-[1.15rem] text-mute transition-colors hover:border-purple hover:bg-purple/15 hover:text-heading"
+                className="grid h-10 w-10 place-items-center rounded-xl border border-line bg-surface text-[1rem] text-mute transition-all duration-250 hover:-translate-y-1.5 hover:scale-105 hover:border-indigo hover:bg-indigo-soft hover:text-indigo shadow-sm"
               >
-                <IconCmp />
+                <Icon />
               </a>
             ))}
           </div>
+
+          {/* Stats Bar */}
+          <div className="anim-enter anim-delay-6 mt-9 grid max-w-80 grid-cols-2 gap-6 border-t border-line pt-6">
+            {STATS.map(({ num, label }) => (
+              <div key={label} className="group transition-transform duration-200 hover:-translate-y-0.5">
+                <p className="font-heading text-[1.6rem] font-extrabold text-heading transition-colors group-hover:text-indigo">{num}</p>
+                <p className="text-[0.76rem] font-medium text-mute">{label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Right Column: Animasi Kokarde (Lanyard ID Badge Jatuh dari Atas) */}
+        <div className="relative mx-auto flex w-full max-w-110 items-center justify-center lg:max-w-none lg:pl-24 xl:pl-28 lg:-mt-12 z-20">
+          <KokardeLanyard />
         </div>
       </div>
-
-      <a
-        href="#about"
-        className="absolute bottom-7 left-1/2 grid h-11 w-11 -translate-x-1/2 place-items-center rounded-full border border-line bg-soft text-[1.3rem] text-mute"
-        aria-label="Scroll ke bawah"
-      >
-        <FiArrowDown />
-      </a>
     </section>
   )
 }

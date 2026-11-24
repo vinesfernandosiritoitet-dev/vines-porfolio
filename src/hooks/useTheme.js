@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 
 const getInitialTheme = () => {
-  if (typeof window === 'undefined') return 'dark'
+  if (typeof window === 'undefined') return 'light'
   try {
     const saved = localStorage.getItem('theme')
     if (saved === 'light' || saved === 'dark') return saved
-    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+    return 'light'
   } catch {
-    return 'dark'
+    return 'light'
   }
 }
 

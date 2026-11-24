@@ -6,10 +6,10 @@ import './index.css'
 import App from './App.jsx'
 
 AOS.init({
-  duration: 600,
-  easing: 'ease-out',
+  duration: 700,
+  easing: 'ease-out-cubic',
   once: true,
-  offset: 80,
+  offset: 50,
 })
 
 createRoot(document.getElementById('root')).render(
