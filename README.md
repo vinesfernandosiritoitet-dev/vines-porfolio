@@ -1,22 +1,27 @@
 # Portofolio — Vines Fernando
 
-Portofolio web modern 2026 yang dibangun dengan React + Vite + Tailwind CSS. Tema biru–ungu di atas latar gelap dengan animasi premium.
+Portfolio web modern untuk **UI/UX Designer** yang dibangun dengan **React + Vite + Tailwind CSS 4**. Desain premium **dark-first** dengan palet **navy — indigo**, grid background, glassmorphism, animasi halus, dan case study lengkap.
 
 ## Fitur
 
-- Navbar sticky dengan blur + scroll-spy + menu mobile
-- Hero dengan typing animation, floating icons, tombol Download CV & Hubungi Saya
-- Section Tentang (glass card, statistik)
-- Section Skills (progress bar + ikon)
-- Section Project (kartu dengan efek hover)
-- Section Kontak (Email, WhatsApp, Instagram + form kirim pesan via WhatsApp)
-- Footer lengkap + tombol kembali ke atas
-- Tema gelap & terang, responsive
-- Palet warna indigo–ungu dengan background gradien statis
+- **Tema gelap sebagai default** dengan toggle terang/gelap
+- **Navbar** fixed dengan blur, scroll-spy, scroll progress bar, CTA *Hubungi Saya*, dan menu mobile
+- **Hero** dark dengan grid lines, badge *Tersedia untuk freelance*, stats, foto dengan kartu melayang
+- **Tools marquee** — strip logo tools berjalan tanpa henti
+- **Tentang** — cerita singkat, chip keahlian, quick info, dan tombol Unduh CV
+- **Keahlian** — 8 kartu kemampuan bersih tanpa progress bar
+- **Proyek** — layout bento dengan kartu featured, preview mockup CSS/SVG (Ayomasak, Pandawa Store, School Assignment App, Car Service App)
+- **Case Study** (`/case-study/:id`) — 9 bagian: Overview → Problem → User Research → User Persona → User Flow → Wireframe → UI Design → Prototype → Final Result, dengan TOC sticky
+- **Proses Desain** — visual 7 langkah proses kerja
+- **Testimoni** — kartu soscial proof dari klien (data di `src/data/testimonials.js`)
+- **FAQ** — accordion pertanyaan umum (data di `src/data/faq.js`)
+- **Kontak** — Email, WhatsApp, Instagram, LinkedIn + CTA *Chat via WhatsApp*
+- **Footer** multi-kolom ala web bisnis (brand, navigasi, kontak, sosmed)
+- Responsive, admin login untuk menambah project (rute `/admin`)
 
 ## Teknologi
 
-React · Vite · Tailwind CSS · AOS · React Icons
+React · Vite · Tailwind CSS 4 · AOS · React Icons · React Router
 
 ## Menjalankan
 
@@ -34,7 +39,9 @@ npm run preview
 
 ## Kustomisasi
 
-- **Foto profil:** ganti `src/assets/hero.png`.
+- **Foto profil:** ganti `src/assets/hero.png` atau lewat tombol *Ganti Foto*.
 - **CV:** `public/cv.pdf` dihasilkan dari `scripts/gen-cv.mjs` (`node scripts/gen-cv.mjs`).
-- **Link project:** ubah href di `src/components/Projects.jsx`.
-- **Kontak & sosmed:** ubah di `src/components/Hero.jsx`, `Contact.jsx`, `Footer.jsx`.
+- **Data project & case study:** edit `src/data/projects.js`.
+- **Testimoni & FAQ:** edit `src/data/testimonials.js` dan `src/data/faq.js`.
+- **Kontak & sosmed:** ubah di `src/components/Contact.jsx`, `Hero.jsx`, `Footer.jsx`.
+- **Admin:** atur username/password di `.env` (`VITE_ADMIN_USERNAME`, `VITE_ADMIN_PASSWORD`).
