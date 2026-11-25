@@ -308,19 +308,21 @@ export default function Projects() {
           </p>
         </div>
 
-        {/* Tombol Tambah Proyek */}
-        <div className="mb-8 flex justify-end" data-aos="fade-up">
-          <button
-            type="button"
-            className="btn btn-primary"
-            onClick={() => {
-              setFormError('')
-              setIsAddOpen(true)
-            }}
-          >
-            <FiPlus /> Tambah Proyek
-          </button>
-        </div>
+        {/* Tombol Tambah Proyek (Hanya Tampil untuk Admin) */}
+        {isAdmin && (
+          <div className="mb-8 flex justify-end" data-aos="fade-up">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => {
+                setFormError('')
+                setIsAddOpen(true)
+              }}
+            >
+              <FiPlus /> Tambah Proyek
+            </button>
+          </div>
+        )}
 
         {/* Project Cards Grid */}
         {projects.length === 0 ? (
@@ -331,9 +333,11 @@ export default function Projects() {
             <p className="font-heading text-[1.05rem] font-bold text-heading">
               Belum ada proyek yang ditampilkan
             </p>
-            <p className="mt-1.5 text-[0.86rem] text-mute">
-              Klik tombol <strong className="text-indigo">+ Tambah Proyek</strong> di kanan atas untuk menambahkan proyek terbaru Anda.
-            </p>
+            {isAdmin && (
+              <p className="mt-1.5 text-[0.86rem] text-mute">
+                Klik tombol <strong className="text-indigo">+ Tambah Proyek</strong> di kanan atas untuk menambahkan proyek terbaru Anda.
+              </p>
+            )}
           </div>
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -386,8 +390,8 @@ export default function Projects() {
                     {p.category}
                   </span>
 
-                  {/* Actions (Admin atau proyek buatan sendiri) */}
-                  {(isAdmin || isCustom) && (
+                  {/* Actions (Hanya untuk Admin) */}
+                  {isAdmin && (
                     <div className="absolute right-3 top-2.5 z-20 flex items-center gap-1 opacity-85 transition-opacity group-hover:opacity-100">
                       <button
                         type="button"
@@ -635,8 +639,8 @@ export default function Projects() {
           </div>
         )}
 
-        {/* MODAL TAMBAH PROYEK */}
-        {isAddOpen && (
+        {/* MODAL TAMBAH PROYEK (Hanya untuk Admin) */}
+        {isAdmin && isAddOpen && (
           <div
             className="fixed inset-0 z-1200 grid place-items-center bg-black/80 p-4 backdrop-blur-md overflow-y-auto"
             onClick={() => setIsAddOpen(false)}
@@ -777,8 +781,8 @@ export default function Projects() {
           </div>
         )}
 
-        {/* MODAL SUNTING (EDIT) PROYEK */}
-        {editingProject && (
+        {/* MODAL SUNTING (EDIT) PROYEK (Hanya untuk Admin) */}
+        {isAdmin && editingProject && (
           <div
             className="fixed inset-0 z-1200 grid place-items-center bg-black/80 p-4 backdrop-blur-md overflow-y-auto"
             onClick={() => setEditingProject(null)}
